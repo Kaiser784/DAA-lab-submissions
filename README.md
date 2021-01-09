@@ -1,4 +1,4 @@
-# Algorithm Design and Analysis- Lab Submission
+# Design and Analysis of Algorithm - Lab Submission
 Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kancheepuram, 2021.
  
  ## Team:
