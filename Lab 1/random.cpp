@@ -81,8 +81,6 @@ int main()
     int min = numbers.minimum(array, size);
     int random = numbers.random(max, min, size, array);
 
-    cout << "Maximum is " << max << endl;
-    cout << "Minimum is " << min << endl;
     cout << "The number which is neither MAXIMUM or MINIMUM is " << random << endl;
 
     return 0;
