@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<cmath>
+#include <bits/stdc++.h> 
 using namespace std;
 
 class maximum
@@ -45,14 +46,30 @@ int maximum::logic2(int* array, int size)
 
 int maximum::logic3(int* array, int size)
 {   
-    if(size == 1)
-    {
-        return array[0];
+    int AND = 1;
+    int max = 0;
+
+    while(AND)
+    {   
+        AND = 0;
+
+        for(int i = 0; i < size; i++)
+        {
+            if(array[i])
+            {
+               array[i]--;
+            }
+        }
+        
+        for(int i = 0; i < size; i++)
+        {
+            AND = AND | array[i];
+        }
+
+        max++;
     }
-    else
-    {
-        return max(array[0], maximum::logic3(array+1, size-1));
-    }
+
+    return max;
 }
 
 int main()
