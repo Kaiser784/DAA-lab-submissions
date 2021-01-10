@@ -42,9 +42,9 @@ int max_min::minimum(int* array, int size)
 int max_min::random(int max, int min, int size, int* array)
 {    
     int temp;
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
-        if(array[i] != max && array[i] != min)
+        if (array[i] != max && array[i] != min)
         {
             temp = array[i];
             break;
