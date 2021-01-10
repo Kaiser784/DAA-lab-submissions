@@ -15,6 +15,7 @@ class LCM
     public:
     int LCM_1(int n, int m);
     int LCM_2(int n, int m);
+    int LCM_3(int n, int m);
 };
 
 int GCD::GCD_1(int n, int m)
@@ -44,7 +45,7 @@ int GCD::GCD_3(int n, int m)
     prime_factor pf;
     vector<pair<int, int>> fact1 = pf.factor(n);
     vector<pair<int, int>> fact2 = pf.factor(m);
-    int i = 0, j = 0, gcd = 0;
+    int i = 0, j = 0, gcd = 1;
     while (i < fact1.size() &&  j < fact2.size())
     {
         if (fact1[i].first < fact2[j].first)
@@ -58,7 +59,7 @@ int GCD::GCD_3(int n, int m)
         else if (fact1[i].first == fact2[j].first)
         {
             int comm_pow = min(fact1[i].second, fact2[j].second);
-            gcd += pow(fact1[i].first, comm_pow);
+            gcd *= pow(fact1[i].first, comm_pow);
             i++;
             j++;
         }
@@ -86,6 +87,45 @@ int LCM::LCM_2(int n, int m)
     }
 }
 
+int LCM::LCM_3(int n, int m)
+{
+    prime_factor pf;
+    vector<pair<int, int>> fact1 = pf.factor(n);
+    vector<pair<int, int>> fact2 = pf.factor(m);
+    int i = 0, j = 0, lcm = 1;
+    while (i < fact1.size() &&  j < fact2.size())
+    {
+        if (fact1[i].first < fact2[j].first)
+        {
+            lcm *= pow(fact1[i].first, fact1[i].second);
+            i++;
+        }
+        else if (fact1[i].first > fact2[j].first)
+        {
+            lcm *= pow(fact2[j].first, fact2[j].second);
+            j++;
+        }
+        else if (fact1[i].first == fact2[j].first)
+        {
+            int comm_pow = max(fact1[i].second, fact2[j].second);
+            lcm *= pow(fact1[i].first, comm_pow);
+            i++;
+            j++;
+        }
+    }
+    while (i < fact1.size())
+    {
+        lcm *= pow(fact1[i].first, fact1[i].second);
+        i++;
+    }
+    while (j < fact2.size())
+    {
+        lcm *= pow(fact2[j].first, fact2[j].second);
+        j++;
+    }
+    return lcm;
+}
+
 int main()
 {
     int n, m;
@@ -98,5 +138,6 @@ int main()
     cout<<"GCD Logic 3: "<<val1.GCD_3(n, m)<<"\n";
     cout<<"LCM Logic 1: "<<val2.LCM_1(n, m)<<"\n";
     cout<<"LCM Logic 2: "<<val2.LCM_2(n, m)<<"\n";
+    cout<<"LCM Logic 3: "<<val2.LCM_3(n, m)<<"\n";
     return 0;
 }
