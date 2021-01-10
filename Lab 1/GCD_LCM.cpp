@@ -10,6 +10,13 @@ class GCD
     int GCD_3(int n, int m);
 };
 
+class LCM
+{
+    public:
+    int LCM_1(int n, int m);
+    int LCM_2(int n, int m);
+};
+
 int GCD::GCD_1(int n, int m)
 {
     if (m == 0)
@@ -59,14 +66,37 @@ int GCD::GCD_3(int n, int m)
     return gcd;
 }
 
+int LCM::LCM_1(int n, int m)
+{
+    GCD val;
+    int gcd = val.GCD_1(n, m);
+    return (n*m)/gcd;
+}
+
+int LCM::LCM_2(int n, int m)
+{
+    int lcm = max(n, m);
+    while (1)
+    {
+        if (lcm%n==0 && lcm%m==0)
+        {
+            return lcm;
+        }
+        lcm++;
+    }
+}
+
 int main()
 {
     int n, m;
     cout<<"Enter 2 values\n";
     cin>>n>>m;
-    GCD val;
-    cout<<"Logic 1: "<<val.GCD_1(n, m)<<"\n";
-    cout<<"Logic 2: "<<val.GCD_2(n, m)<<"\n";
-    cout<<"Logic 3: "<<val.GCD_3(n, m)<<"\n";
+    GCD val1;
+    LCM val2;
+    cout<<"GCD Logic 1: "<<val1.GCD_1(n, m)<<"\n";
+    cout<<"GCD Logic 2: "<<val1.GCD_2(n, m)<<"\n";
+    cout<<"GCD Logic 3: "<<val1.GCD_3(n, m)<<"\n";
+    cout<<"LCM Logic 1: "<<val2.LCM_1(n, m)<<"\n";
+    cout<<"LCM Logic 2: "<<val2.LCM_2(n, m)<<"\n";
     return 0;
 }
