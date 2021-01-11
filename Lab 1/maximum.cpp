@@ -46,16 +46,43 @@ int maximum::logic2(int* array, int size)
 
 int maximum::logic3(int* array, int size)
 {   
-    int AND = 1;
+    int AND = 0;
     int max = 0;
 
+    for(int i = 0; i < size; i++)
+    {
+        if(array[i] >= 0)
+        {
+            AND = AND | array[i];
+        }
+    }
+
+    while(!AND)
+    {   
+        AND = 0;
+
+        for(int i = 0; i < size; i++)
+        {
+               array[i]++;
+        }
+        
+        for(int i = 0; i < size; i++)
+        {
+            if(array[i] >= 0)
+            {
+                AND = AND | array[i];
+            }
+        }
+
+        max--;
+    }
     while(AND)
     {   
         AND = 0;
 
         for(int i = 0; i < size; i++)
         {
-            if(array[i])
+            if(array[i] > 0)
             {
                array[i]--;
             }
@@ -63,7 +90,10 @@ int maximum::logic3(int* array, int size)
         
         for(int i = 0; i < size; i++)
         {
-            AND = AND | array[i];
+            if(array[i] >= 0)
+            {
+                AND = AND | array[i];
+            }
         }
 
         max++;
