@@ -42,6 +42,15 @@ int GCD::GCD_2(int n, int m)
 
 int GCD::GCD_3(int n, int m)
 {
+    if (n == m)
+    {
+        return n;
+    }
+    else if (n==0 || m==0)
+    {
+        return max(n, m);
+    }
+    
     prime_factor pf;
     vector<pair<int, int>> fact1 = pf.factor(n);
     vector<pair<int, int>> fact2 = pf.factor(m);
@@ -89,6 +98,10 @@ int LCM::LCM_2(int n, int m)
 
 int LCM::LCM_3(int n, int m)
 {
+    if (n == m)
+    {
+        return n;
+    }
     prime_factor pf;
     vector<pair<int, int>> fact1 = pf.factor(n);
     vector<pair<int, int>> fact2 = pf.factor(m);
@@ -128,16 +141,43 @@ int LCM::LCM_3(int n, int m)
 
 int main()
 {
-    int n, m;
-    cout<<"Enter 2 values\n";
-    cin>>n>>m;
-    GCD val1;
-    LCM val2;
-    cout<<"GCD Logic 1: "<<val1.GCD_1(n, m)<<"\n";
-    cout<<"GCD Logic 2: "<<val1.GCD_2(n, m)<<"\n";
-    cout<<"GCD Logic 3: "<<val1.GCD_3(n, m)<<"\n";
-    cout<<"LCM Logic 1: "<<val2.LCM_1(n, m)<<"\n";
-    cout<<"LCM Logic 2: "<<val2.LCM_2(n, m)<<"\n";
-    cout<<"LCM Logic 3: "<<val2.LCM_3(n, m)<<"\n";
-    return 0;
+    int n, m, choose;
+    while (1)
+    {
+        cout<<"Enter 2 values\n";
+        cin>>n>>m;
+        cout<<"1. GCD\n2. LCM\n3. Exit\n";
+        cin>>choose;
+        switch (choose)
+        {
+        case 1:
+            if (n==0 && m==0)
+            {
+                cout<<"GCD(0,0) is not defined\n";
+                break;
+            }
+            GCD val1;
+            cout<<"GCD Logic 1: "<<val1.GCD_1(n, m)<<"\n";
+            cout<<"GCD Logic 2: "<<val1.GCD_2(n, m)<<"\n";
+            cout<<"GCD Logic 3: "<<val1.GCD_3(n, m)<<"\n";
+            break;
+        case 2:
+            if (n==0 || m==0)
+            {
+                cout<<"LCM of zero does not exist(Remove 0)\n";
+                break;
+            }
+            LCM val2;
+            cout<<"LCM Logic 1: "<<val2.LCM_1(n, m)<<"\n";
+            cout<<"LCM Logic 2: "<<val2.LCM_2(n, m)<<"\n";
+            cout<<"LCM Logic 3: "<<val2.LCM_3(n, m)<<"\n";
+            break;
+
+        case 3:
+            exit(0);
+        default:
+            cout<<"Wrong\n";
+            break;
+        }
+    }
 }

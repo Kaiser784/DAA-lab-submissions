@@ -45,8 +45,17 @@ vector<pair<int, int>> prime_factor::factor(int num)
 int main()
 {
     int num;
-    cout<<"Enter a number\n";
-    cin>>num;
+    while (1)
+    {
+        cout<<"Enter a number\n";
+        cin>>num;
+        if (num <= 0)
+            cout<<"Only enter positive non-zero intergers\n";
+        else if (num == 1)
+            cout<<"1 is neither prime nor composite number\n";
+        else
+            break;
+    }
     prime_factor pf;
     vector<pair<int, int>> fact = pf.factor(num);
     for (int i = 0; i < fact.size(); i++)
