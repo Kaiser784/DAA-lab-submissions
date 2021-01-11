@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "*.js": "csharp",
-        "iostream": "cpp"
-    }
-}

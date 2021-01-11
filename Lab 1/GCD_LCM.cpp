@@ -50,7 +50,6 @@ int GCD::GCD_3(int n, int m)
     {
         return max(n, m);
     }
-    
     prime_factor pf;
     vector<pair<int, int>> fact1 = pf.factor(n);
     vector<pair<int, int>> fact2 = pf.factor(m);
@@ -156,6 +155,11 @@ int main()
                 cout<<"GCD(0,0) is not defined\n";
                 break;
             }
+            if (n<0 || m<0)
+            {
+                cout<<"The number should not be negative\n";
+                break;
+            }
             GCD val1;
             cout<<"GCD Logic 1: "<<val1.GCD_1(n, m)<<"\n";
             cout<<"GCD Logic 2: "<<val1.GCD_2(n, m)<<"\n";
@@ -165,6 +169,11 @@ int main()
             if (n==0 || m==0)
             {
                 cout<<"LCM of zero does not exist(Remove 0)\n";
+                break;
+            }
+            if (n<0 || m<0)
+            {
+                cout<<"The number should not be negative\n";
                 break;
             }
             LCM val2;
