@@ -6,7 +6,7 @@ using namespace std;
 class max_min
 {
     public:
-        int random(int, int, int, int*);
+        void random(int, int, int, int*);
         int maximum(int* array, int size);
         int minimum(int* array, int size);
 };
@@ -39,7 +39,7 @@ int max_min::minimum(int* array, int size)
     return min;
 }
 
-int max_min::random(int max, int min, int size, int* array)
+void max_min::random(int max, int min, int size, int* array)
 {    
     int temp;
     for (int i = 0; i < size; i++)
@@ -50,22 +50,22 @@ int max_min::random(int max, int min, int size, int* array)
             break;
         }
     }
-    return temp;
+    if(temp != max && temp != min)
+    {
+        cout << "The number which is neither MAXIMUM or MINIMUM is " << temp << endl;
+    }
+    else
+    {
+        cout << "The number which is neither MAXIMUM or MINIMUM does not exist " << endl;
+    }   
 }
 
 int main()
 {
     int size;
 
-    begin:
     cout << "Enter the size of the integer array you're going to enter : ";
     cin >> size;
-
-    if (size <= 2)
-    {
-        cout << "Please enter a size greater than 2 so that there may be other numbers than maximum and minimum" << endl;
-        goto begin;
-    }
 
     int array[size];
 
@@ -79,9 +79,7 @@ int main()
 
     int max = numbers.maximum(array, size);
     int min = numbers.minimum(array, size);
-    int random = numbers.random(max, min, size, array);
-
-    cout << "The number which is neither MAXIMUM or MINIMUM is " << random << endl;
+    numbers.random(max, min, size, array);
 
     return 0;
 }
