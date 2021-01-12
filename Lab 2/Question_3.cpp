@@ -12,6 +12,14 @@ class triangle
         void hourglass(int n);
 };
 
+/*Function for upper left triangle
+  Eg - for n=5
+  1 2 3 4 5
+  1 2 3 4
+  1 2 3
+  1 2
+  1
+*/
 void triangle::upper_left_triangle(int n)
 {
     for (int i = 0; i < n; i++)
@@ -24,6 +32,14 @@ void triangle::upper_left_triangle(int n)
     }
 }
 
+/*Function for upper right triangle
+Eg - for n=5
+  1 2 3 4 5
+    2 3 4 5
+      3 4 5
+        4 5
+          5
+*/
 void triangle::upper_right_triangle(int n)
 {
     for (int i = 0; i < n; i++)
@@ -40,6 +56,14 @@ void triangle::upper_right_triangle(int n)
     }
 }
 
+/*Function for lower left triangle
+  Eg - for n=5
+  1
+  1 2
+  1 2 3
+  1 2 3 4
+  1 2 3 4 5
+*/
 void triangle::lower_left_triangle(int n)
 {
     for (int i = 1; i <= n; i++)
@@ -52,6 +76,14 @@ void triangle::lower_left_triangle(int n)
     }
 }
 
+/*Function for lower left triangle
+  Eg - for n=5
+          5
+        4 5
+      3 4 5
+    2 3 4 5
+  1 2 3 4 5
+*/
 void triangle::lower_right_triangle(int n)
 {
     for (int i = 1; i <= n; i++)
@@ -60,7 +92,7 @@ void triangle::lower_right_triangle(int n)
         {
             cout<<"  ";
         }
-        for (int j = 1; j <= i ; j++)
+        for (int j = n-i+1; j <= n; j++)
         {
             cout<<j<<" ";
         }
