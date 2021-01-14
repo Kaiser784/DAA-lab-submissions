@@ -40,7 +40,8 @@ User enters until some time after which the user must enter -1 only and no other
 Question:  Identify the position of the first '-1'
 
 Propose three different logic and implement all three.  Like the above, compare system time to pick the best.    
-As a programmer, you may declare an array of size, say, 10000. ( if the system is not accepting, then make it 5000).  You should not run a forloop for 10000 or 5000.   
+As a programmer, you may declare an array of size, say, 10000. ( if the system is not accepting, then make it 5000).
+You should not run a forloop for 10000 or 5000. 
 The size is given only for modelling purposes, in theoretical sense, the size is unknown to the user.
 
 3.
