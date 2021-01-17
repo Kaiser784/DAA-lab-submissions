@@ -8,12 +8,11 @@ using namespace std;
 class search
 {
     public:
-        int logic1(vector<int> &array);
-        int logic2(vector<int> &array, int posn);
-        int logic3(vector<int> &array);
+        int logic2(vector<int> &array);
+        int logic3(vector<int> &array, int posn);
 };
 
-int search::logic1(vector<int> &array)
+int search::logic2(vector<int> &array)
 {
     int posn = 0;
     int size = array.size();
@@ -33,7 +32,7 @@ int search::logic1(vector<int> &array)
     return 0;
 }
 
-int search::logic2(vector<int> &array, int posn)
+int search::logic3(vector<int> &array, int posn)
 {
     if(array[posn] == -1)
     {
@@ -41,24 +40,21 @@ int search::logic2(vector<int> &array, int posn)
     }
     else
     {
-        search::logic2(array, posn+1);
+        search::logic3(array, posn+1);
     }
-}
-
-int search::logic3(vector<int> &array)
-{
-    
 }
 
 int main()
 {
     vector<int> array;
     int temp;
+    int count = 0;
 
     while(1)
     {
         cout << "Enter the number (-1 is the delimiter) : ";
         cin >> temp;
+        count++;
 
         if(temp == -1)
         {
@@ -93,20 +89,29 @@ int main()
     clock_t start, end;
 
     start = clock();
-    posn = srch.logic1(array);
+    posn = count;
     end = clock();
 
     double time1 = double(end-start)/double(CLOCKS_PER_SEC);
-
+    
     cout << "The position of -1 using logic-1 is "<< posn << endl;
-    cout << "Time taken by logic-1 is "<< fixed << time1 << setprecision(6) <<" seconds" << endl;
+    cout << "Time taken by logic-2 is "<< fixed << time1 << setprecision(6) <<" seconds" << endl;
 
     start = clock();
-    posn = srch.logic2(array, 0);
+    posn = srch.logic2(array);
     end = clock();
 
     double time2 = double(end-start)/double(CLOCKS_PER_SEC);
 
     cout << "The position of -1 using logic-2 is "<< posn << endl;
     cout << "Time taken by logic-2 is "<< fixed << time2 << setprecision(6) <<" seconds" << endl;
+
+    start = clock();
+    posn = srch.logic3(array, 0);
+    end = clock();
+
+    double time3 = double(end-start)/double(CLOCKS_PER_SEC);
+
+    cout << "The position of -1 using logic-3 is "<< posn << endl;
+    cout << "Time taken by logic-3 is "<< fixed << time3 << setprecision(6) <<" seconds" << endl;
 }   
