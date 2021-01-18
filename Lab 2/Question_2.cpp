@@ -87,15 +87,8 @@ int main()
     int posn;   
     search srch;
     clock_t start, end;
-
-    start = clock();
-    posn = count;
-    end = clock();
-
-    double time1 = double(end-start)/double(CLOCKS_PER_SEC);
     
-    cout << "The position of -1 using logic-1 is "<< posn << endl;
-    cout << "Time taken by logic-2 is "<< fixed << time1 << setprecision(6) <<" seconds" << endl;
+    cout << "The position of -1 using logic-1 is "<< count << endl;
 
     start = clock();
     posn = srch.logic2(array);
