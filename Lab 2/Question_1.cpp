@@ -2,9 +2,10 @@
 #include<iomanip>
 #include<algorithm>
 #include<unordered_map>
-#include<time.h>
+#include<chrono>
 #include<fstream>
 using namespace std;
+using namespace std::chrono;
 
 class solve
 {
@@ -109,26 +110,27 @@ int main()
         {
             cin>>A[i];
         }
-        start =  clock();
+
+        auto start1 =  high_resolution_clock::now();
         check = s.logic_1(A, size, p);
-        end = clock();
-        time1 = double(end-start)/double(CLOCKS_PER_SEC);
+        auto stop1 = high_resolution_clock::now();
+        auto duration1 = duration_cast<microseconds>(stop1-start1);
         cout<<"Logic-1: "<<check<<"\n";
-
-        start =  clock();
+        outdata<<duration1.count()<<",";
+        
+        auto start2 =  high_resolution_clock::now();
         check = s.logic_2(A, size, p);
-        end = clock();
-        time2 = double(end-start)/double(CLOCKS_PER_SEC);
+        auto stop2 = high_resolution_clock::now();
+        auto duration2 = duration_cast<microseconds>(stop2-start2);
         cout<<"Logic-2: "<<check<<"\n";
+        outdata<<duration2.count()<<",";
 
-        start =  clock();
+        auto start3 =  high_resolution_clock::now();
         check = s.logic_3(A, size, p);
-        end = clock();
-        time3 = double(end-start)/double(CLOCKS_PER_SEC);
+        auto stop3 = high_resolution_clock::now();
+        auto duration3 = duration_cast<microseconds>(stop3-start3);
         cout<<"Logic-3: "<<check<<"\n";
-
-        cout<<fixed<<time1<<setprecision(6)<<","<<fixed<<time2<<setprecision(6)<<","<<fixed<<time3<<setprecision(6)<<"\n";
-        outdata<<fixed<<time1<<setprecision(6)<<","<<fixed<<time2<<setprecision(6)<<","<<fixed<<time3<<setprecision(6)<<"\n";
+        outdata<<duration3.count()<<"\n";
     }
 
     outdata.close();
