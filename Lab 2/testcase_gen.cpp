@@ -12,7 +12,7 @@ int main()
 {
     srand(time(0));
     ofstream fin;
-    fin.open("input_1.text");
+    fin.open("input.text");
     int t = 20;
     int arr[1000];
     while(t--)

@@ -20,18 +20,18 @@ class solve
 */
 int solve::logic_1(int *A, int size, int p)
 {
-    int ctr = 0;
     for (int i = 0; i < size; i++)
     {
         for (int j = i+1; j < size; j++)
         {
+            cout<<"";
             if (A[i]+A[j] == p)
             {
-                ctr++;
+                return 1;
             }
         }
     }
-    return ctr;
+    return -1;
 }
 
 /*Sorting and using binary search to find the pair
@@ -40,17 +40,25 @@ int solve::logic_1(int *A, int size, int p)
 */
 int solve::logic_2(int *A, int size, int p)
 {
-    int ctr=0;
     sort(A, A+size);
-    for (int i = 0; i < size; i++)
+    int i=0, j=size-1;
+    while (i<j)
     {
-        bool check = binary_search(A, A+size, p-A[i]);
-        if (check)
+        cout<<"";
+        if (A[i]+A[j]==p)
         {
-            ctr++;
+            return 1;
+        }
+        else if (A[i]+A[j]<p)
+        {
+            i++;
+        }
+        else
+        {
+            j--;
         }
     }
-    return ctr/2;
+    return -1;
 }
 
 /*Using Hash Table to store frequency of each element
@@ -59,61 +67,71 @@ int solve::logic_2(int *A, int size, int p)
 */
 int solve::logic_3(int *A, int size, int p)
 {
-    unordered_map<int, int> freq;
+    unordered_map<int, int> h;
     for (int i = 0; i < size; i++)
     {
-        freq[A[i]]++;
-    }
-    int ctr = 0;
-    for (int i = 0; i < size; i++)
-    {
-        ctr += freq[p-A[i]];
-        if (p-A[i] == A[i])
+        int q=p-A[i];
+        if (h.find(q) == h.end())
         {
-            ctr--;
+            h.insert(make_pair(A[i], 1));
+        }
+        else
+        {
+            return 1;
         }
     }
-    return ctr/2;
+    return -1;
 }
 
 int main()
 {
-    int size, p;
-    //cout<<"Enter the size of array: ";
-    //cout<<"Enter the integer 'p': ";
-    cin>>size>>p;
-    int A[size];
-    //cout<<"Enter the numbers: ";
-    for (int i = 0; i < size; i++)
-    {
-        cin>>A[i];
-    }
-
-    int check;
+    int size, p, t, check;
     double time1, time2, time3;
+    cout<<"Enter the number of testcases: ";
+    cin>>t;
+
     solve s;
     clock_t start, end;
 
-    start =  clock();
-    check = s.logic_1(A, size, p);
-    end = clock();
-    time1 = double(end-start)/double(CLOCKS_PER_SEC);
-    cout<<"Logic-1: "<<check<<"\n";
-    cout<<"Time taken by Logic-1: "<<fixed<<time1<<setprecision(6)<<" seconds\n";
+    ofstream outdata;
+    outdata.open("output.csv", ios::out | ios::app);
 
-    start =  clock();
-    check = s.logic_2(A, size, p);
-    end = clock();
-    time2 = double(end-start)/double(CLOCKS_PER_SEC);
-    cout<<"Logic-2: "<<check<<"\n";
-    cout<<"Time taken by Logic-1: "<<fixed<<time2<<setprecision(6)<<" seconds\n";
+    outdata<<"Time-1, Time-2, Time-3\n";
 
-    start =  clock();
-    check = s.logic_3(A, size, p);
-    end = clock();
-    time3 = double(end-start)/double(CLOCKS_PER_SEC);
-    cout<<"Logic-3: "<<check<<"\n";
-    cout<<"Time taken by Logic-1: "<<fixed<<time3<<setprecision(6)<<" seconds\n";
+    while (t--)
+    {
+        //cout<<"Enter the size of array: ";
+        cin>>size>>p;
+        //cout<<"Enter the integer 'p': ";
+        int A[size];
+        //cout<<"Enter the numbers: ";
+        for (int i = 0; i < size; i++)
+        {
+            cin>>A[i];
+        }
+        start =  clock();
+        check = s.logic_1(A, size, p);
+        end = clock();
+        time1 = double(end-start)/double(CLOCKS_PER_SEC);
+        cout<<"Logic-1: "<<check<<"\n";
+
+        start =  clock();
+        check = s.logic_2(A, size, p);
+        end = clock();
+        time2 = double(end-start)/double(CLOCKS_PER_SEC);
+        cout<<"Logic-2: "<<check<<"\n";
+
+        start =  clock();
+        check = s.logic_3(A, size, p);
+        end = clock();
+        time3 = double(end-start)/double(CLOCKS_PER_SEC);
+        cout<<"Logic-3: "<<check<<"\n";
+
+        cout<<fixed<<time1<<setprecision(6)<<","<<fixed<<time2<<setprecision(6)<<","<<fixed<<time3<<setprecision(6)<<"\n";
+        outdata<<fixed<<time1<<setprecision(6)<<","<<fixed<<time2<<setprecision(6)<<","<<fixed<<time3<<setprecision(6)<<"\n";
+    }
+
+    outdata.close();
 
     return 0;
 }
