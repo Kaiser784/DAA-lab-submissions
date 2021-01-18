@@ -58,7 +58,7 @@ int main()
 
         if(temp == -1)
         {
-            goto delimiter;
+            goto delimiter;8
         }
         array.push_back(temp);
     }
