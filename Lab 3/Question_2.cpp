@@ -1,13 +1,14 @@
 #include<iostream>
 #include<vector>
 #include<cmath>
+#include<unordered_map>
 using namespace std;
 
 class duplicates
 {
     public:
         void logic1(vector<int> &array, int size);
-        int logic2(vector<int> &array);
+        void logic2(vector<int> &array, int size);
 };
 
 void duplicates::logic1(vector<int> &array, int size)
@@ -40,6 +41,32 @@ void duplicates::logic1(vector<int> &array, int size)
     cout << endl;
 }
 
+void duplicates::logic2(vector<int> &array, int size)
+{
+    unordered_map<int, int> map;
+    unordered_map<int, int>:: iterator i;
+    int check = 0;
+
+    for(int i = 0; i < size; i++)
+    {
+        map[array[i]]++;
+    }
+
+    for(i = map.begin(); i != map.end(); i++)
+    {
+        if(i->second > 1)
+        {
+            cout << i->first << ",";
+            check++;
+        }
+    }
+    if(check == 0)
+    {
+        cout << "none" << endl;
+    }
+    cout << endl;
+}
+
 int main()
 {
     vector<int> array;
@@ -60,4 +87,7 @@ int main()
 
     cout << "The duplicates in the given array using logic-1 are : ";
     dupes.logic1(array, size);
+
+    cout << "The duplicates in the given array using logic-2 are : ";
+    dupes.logic2(array, size);
 }
