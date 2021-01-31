@@ -2,9 +2,11 @@
 #include<vector>
 #include<cmath>
 #include<unordered_map>
+#include <algorithm>
+
 using namespace std;
 
-class sort
+class sortter
 {
     public:
         void logic1(vector<int> &array, int size);
@@ -12,7 +14,7 @@ class sort
         void logic3(vector<int> &array, int size);
 };
 
-void sort::logic1(vector<int> &array, int size)
+void sortter::logic1(vector<int> &array, int size)
 {
     vector<int> sorted;
 
@@ -45,7 +47,7 @@ void sort::logic1(vector<int> &array, int size)
     cout << endl;    
 }
 
-void sort::logic2(vector<int> &array, int size)
+void sortter::logic2(vector<int> &array, int size)
 {
     for(int i = 0; i < size-1; i++)
     {
@@ -66,6 +68,48 @@ void sort::logic2(vector<int> &array, int size)
     cout << endl;
 }
 
+void sortter::logic3(vector<int> &array, int size)
+{
+    vector<int> arr0;
+    int count0 = 0;
+    vector<int> arr1;
+    int count1 = 0;
+    vector<int> arr2;
+    int count2 = 0;
+
+    vector<int> arr;
+
+    for(int i = 0; i < size; i++)
+    {
+        if(array[i] == 0)
+        {
+            arr0.push_back(array[i]);
+            count0++;
+        }
+        if(array[i] == 1)
+        {
+            arr1.push_back(array[i]);
+            count1++;
+        }
+        if(array[i] == 2)
+        {
+            arr2.push_back(array[i]);
+            count2++;
+        }
+    }
+
+    arr.reserve(arr0.size() + arr1.size() + arr2.size());
+    arr.insert(arr.end(), arr0.begin(), arr0.end());
+    arr.insert(arr.end(), arr1.begin(), arr1.end());
+    arr.insert(arr.end(), arr2.begin(), arr2.end());
+
+    for(int i = 0; i < size; i++)
+    {
+        cout << arr[i] << ",";
+    }
+    cout << endl;
+}
+
 int main()
 {
     vector<int> array;
@@ -82,10 +126,12 @@ int main()
         array.push_back(temp);
     }
 
-    sort ternary;
+    sortter ternary;
 
     cout << "The sorted ternary array using logic-1 is : ";
     ternary.logic1(array, size);
     cout << "The sorted ternary array using logic-2 is : ";
     ternary.logic2(array, size);
+    cout << "The sorted ternary array using logic-3 is : ";
+    ternary.logic3(array, size);
 }
