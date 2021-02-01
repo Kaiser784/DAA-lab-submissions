@@ -6,6 +6,7 @@
 #include<fstream>
 using namespace std;
 using namespace std::chrono;
+using high_resolution_clock=system_clock;
 
 class solve
 {
@@ -25,7 +26,6 @@ int solve::logic_1(int *A, int size, int p)
     {
         for (int j = i+1; j < size; j++)
         {
-            cout<<"";
             if (A[i]+A[j] == p)
             {
                 return 1;
@@ -45,7 +45,6 @@ int solve::logic_2(int *A, int size, int p)
     int i=0, j=size-1;
     while (i<j)
     {
-        cout<<"";
         if (A[i]+A[j]==p)
         {
             return 1;
@@ -62,7 +61,7 @@ int solve::logic_2(int *A, int size, int p)
     return -1;
 }
 
-/*Using Hash Table to store frequency of each element
+/*Using Hash Table
   For each element finding a approriate pair for sum to be 'p'
   Time complexity - O(n)
 */
@@ -72,13 +71,13 @@ int solve::logic_3(int *A, int size, int p)
     for (int i = 0; i < size; i++)
     {
         int q=p-A[i];
-        if (h.find(q) == h.end())
+        if (h[q]==1)
         {
-            h.insert(make_pair(A[i], 1));
+            return 1;
         }
         else
         {
-            return 1;
+            h.insert(make_pair(A[i], 1));
         }
     }
     return -1;
@@ -86,18 +85,15 @@ int solve::logic_3(int *A, int size, int p)
 
 int main()
 {
-    int size, p, t, check;
-    double time1, time2, time3;
+    int size, p, t, check, pos=1;
     cout<<"Enter the number of testcases: ";
     cin>>t;
 
     solve s;
-    clock_t start, end;
-
     ofstream outdata;
     outdata.open("output.csv", ios::out | ios::app);
 
-    outdata<<"Time-1, Time-2, Time-3\n";
+    outdata<<"Serial No, Time-1, Time-2, Time-3\n";
 
     while (t--)
     {
@@ -111,26 +107,28 @@ int main()
             cin>>A[i];
         }
 
-        auto start1 =  high_resolution_clock::now();
-        check = s.logic_1(A, size, p);
-        auto stop1 = high_resolution_clock::now();
-        auto duration1 = duration_cast<microseconds>(stop1-start1);
-        cout<<"Logic-1: "<<check<<"\n";
-        outdata<<duration1.count()<<",";
-        
-        auto start2 =  high_resolution_clock::now();
-        check = s.logic_2(A, size, p);
-        auto stop2 = high_resolution_clock::now();
-        auto duration2 = duration_cast<microseconds>(stop2-start2);
-        cout<<"Logic-2: "<<check<<"\n";
-        outdata<<duration2.count()<<",";
+        outdata<<pos++<<",";
 
-        auto start3 =  high_resolution_clock::now();
+        auto start =  system_clock::now();
+        check = s.logic_1(A, size, p);
+        auto stop = system_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop-start);
+        cout<<"Logic-1: "<<check<<"\n";
+        outdata<<duration.count()<<",";
+        
+        start =  system_clock::now();
+        check = s.logic_2(A, size, p);
+        stop = system_clock::now();
+        duration = duration_cast<nanoseconds>(stop-start);
+        cout<<"Logic-2: "<<check<<"\n";
+        outdata<<duration.count()<<",";
+
+        start =  system_clock::now();
         check = s.logic_3(A, size, p);
-        auto stop3 = high_resolution_clock::now();
-        auto duration3 = duration_cast<microseconds>(stop3-start3);
+        stop = system_clock::now();
+        duration = duration_cast<nanoseconds>(stop-start);
         cout<<"Logic-3: "<<check<<"\n";
-        outdata<<duration3.count()<<"\n";
+        outdata<<duration.count()<<"\n";
     }
 
     outdata.close();
