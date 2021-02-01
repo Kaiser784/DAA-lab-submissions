@@ -29,6 +29,33 @@ int findSubarraySum::countSubarraySum(int *arr, int size, int sum)
     return ans;
 }
 
+void findSubarraySum::printSubarraySum(int *arr, int size, int sum)
+{
+    for (int i = 0; i < size; i++)
+    {
+        int currsum = 0;
+        
+        for (int j = i; j < size; j++)
+        {
+            currsum += arr[j];
+            if (currsum == sum)
+            {
+                printArray(arr, i, j);
+            }
+        }
+    }
+}
+
+void printArray(int *arr, int start, int end)
+{
+    cout<<"{ ";
+    for (int i = start; i <= end; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<"}\n";
+}
+
 int main()
 {
     findSubarraySum subarraysum;
