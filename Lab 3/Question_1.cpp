@@ -113,20 +113,17 @@ void sortter::logic3(vector<int> &array, int size)
 
 void sortter::logic4(vector<int> &array, int size)
 {
-    for(int i = 0; i < size-1; i++)
+    for(int i = 0; i < size; i++)
     {   
-        int minimum = i;
+        int key = array[i];
+        int j = i - 1;
 
-        for(int j = i+1; j < size; j++)
+        while(j >= 0 && array[j] > key)
         {
-            if(array[j] < array[minimum])
-            {
-                minimum = j;
-                int temp = array[j];
-                array[j] = array[j+1];
-                array[j+1] = temp;
-            }
+            array[j + 1] = array[j];
+            j = j - 1;
         }
+        array[j + 1] = key;
     }
     for(int i = 0; i < size; i++)
     {
