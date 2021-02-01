@@ -12,6 +12,7 @@ class sortter
         void logic1(vector<int> &array, int size);
         void logic2(vector<int> &array, int size);
         void logic3(vector<int> &array, int size);
+        void logic4(vector<int> &array, int size);
 };
 
 void sortter::logic1(vector<int> &array, int size)
@@ -110,6 +111,31 @@ void sortter::logic3(vector<int> &array, int size)
     cout << endl;
 }
 
+void sortter::logic4(vector<int> &array, int size)
+{
+    for(int i = 0; i < size-1; i++)
+    {   
+        int minimum = i;
+
+        for(int j = i+1; j < size; j++)
+        {
+            if(array[j] < array[minimum])
+            {
+                minimum = j;
+                int temp = array[j];
+                array[j] = array[j+1];
+                array[j+1] = temp;
+            }
+        }
+    }
+    for(int i = 0; i < size; i++)
+    {
+        cout << array[i] << ",";
+    }
+    cout << endl;
+}
+
+
 int main()
 {
     vector<int> array;
@@ -134,4 +160,6 @@ int main()
     ternary.logic2(array, size);
     cout << "The sorted ternary array using logic-3 is : ";
     ternary.logic3(array, size);
+    cout << "The sorted ternary array using logic-4 is : ";
+    ternary.logic4(array, size);
 }
