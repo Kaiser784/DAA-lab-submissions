@@ -9,6 +9,16 @@ class findSubarraySum
         void printSubarraySum(int *arr, int size, int sum);
 };
 
+void printArray(int *arr, int start, int end)
+{
+    cout<<"{ ";
+    for (int i = start; i <= end; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<"}\n";
+}
+
 int findSubarraySum::countSubarraySum(int *arr, int size, int sum)
 {
     unordered_map<int,int> totsum;
@@ -46,16 +56,6 @@ void findSubarraySum::printSubarraySum(int *arr, int size, int sum)
     }
 }
 
-void printArray(int *arr, int start, int end)
-{
-    cout<<"{ ";
-    for (int i = start; i <= end; i++)
-    {
-        cout<<arr[i]<<" ";
-    }
-    cout<<"}\n";
-}
-
 int main()
 {
     findSubarraySum subarraysum;
@@ -70,7 +70,9 @@ int main()
     }
     cout<<"Enter the sum: ";
     cin>>sum;
+
     cout<<"Number of subarrays with sum '"<<sum<<"' = "<<subarraysum.countSubarraySum(arr, size, sum)<<endl;
+    subarraysum.printSubarraySum(arr, size, sum);
 
 	return 0;
 }
