@@ -12,6 +12,7 @@ class sortter
         void logic1(vector<int> &array, int size);
         void logic2(vector<int> &array, int size);
         void logic3(vector<int> &array, int size);
+        void logic4(vector<int> &array, int size);
 };
 
 void sortter::logic1(vector<int> &array, int size)
@@ -109,6 +110,28 @@ void sortter::logic3(vector<int> &array, int size)
     }
     cout << endl;
 }
+
+void sortter::logic4(vector<int> &array, int size)
+{
+    for(int i = 0; i < size; i++)
+    {   
+        int key = array[i];
+        int j = i - 1;
+
+        while(j >= 0 && array[j] > key)
+        {
+            array[j + 1] = array[j];
+            j = j - 1;
+        }
+        array[j + 1] = key;
+    }
+    for(int i = 0; i < size; i++)
+    {
+        cout << array[i] << ",";
+    }
+    cout << endl;
+}
+
 
 int main()
 {

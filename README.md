@@ -5,7 +5,6 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
  ```
  Abhijeet Mahapatra   - COE19B002
  Paul Babu Kadali     - CED19I002 
- 
  ```
  ## Lab 1
  ``` 
@@ -96,4 +95,13 @@ ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the in
 
 4. In the above problem, list all subsets whose sum is k.
 ```
+---
+## Lab 4
+#### Divide and Conquer Paradigm
+```
+1. Find MAX using 1-way, 2-way, 3-way, k-way approach
 
+2. Count the number of negative numbers in an integer array using 2-way and 3-way approach.
+
+3. Implement an Iterative and a Recursive algorithm for binary search, ternary search.
+```
