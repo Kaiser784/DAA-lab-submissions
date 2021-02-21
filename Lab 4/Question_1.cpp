@@ -18,11 +18,11 @@ int compare::greaterthan(int num1, int num2)
 class maximum
 {
     public:
-        int max_in_list(int *arr, int n, int max, int incr, int size);
+        int max_k_way(int *arr, int n, int max, int incr, int size);
 };
 
-//Max using k-way
-int maximum::max_in_list(int *arr, int n, int max, int incr, int size)
+//Finding Maximum in array using k-way method
+int maximum::max_k_way(int *arr, int n, int max, int incr, int size)
 {
     compare comp;
 
@@ -45,7 +45,7 @@ int maximum::max_in_list(int *arr, int n, int max, int incr, int size)
         return max;
     }
 
-    return max_in_list(arr+incr, n, max, incr, size+incr);
+    return max_k_way(arr+incr, n, max, incr, size+incr);
 }
 
 //Driver function
@@ -60,9 +60,9 @@ int main(int argc, char const *argv[])
     }
     cin>>k;
 
-    maximum max_k_way;
+    maximum max_array;
     int incr = n/k;
-    int max = max_k_way.max_in_list(arr, n, 0, incr, 0);
+    int max = max_array.max_k_way(arr, n, 0, incr, 0);
     cout<<max;
     return 0;
 }
