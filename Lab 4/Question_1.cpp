@@ -2,67 +2,81 @@
 #include<algorithm>
 using namespace std;
 
-class compare
-{
-    public:
-        int greaterthan(int num1, int num2);
-        int lesserthan(int num1, int num2);
-};
-
-//Function to find the max among 2 numbers
-int compare::greaterthan(int num1, int num2)
-{
-    return num1>num2?num1:num2;
-}
-
+//To find the max in an array
 class maximum
 {
     public:
-        int max_k_way(int *arr, int n, int max, int incr, int size);
+        //Finding Maximum in array using k-way method
+        int max_k_way(int *arr, int n, int max, int incr, int size)
+        {
+            if (size<n)
+            {
+                if (size+incr<n)
+                {
+                    sort(arr, arr+incr);
+                    max=arr[incr-1]>max?arr[incr-1]:max;
+                }
+                else
+                {
+                    sort(arr, arr+(n-size));
+                    max=arr[n-size-1]>max?arr[n-size-1]:max;
+                }
+            }
+
+            if (size>=n)
+            {
+                return max;
+            }
+
+            return max_k_way(arr+incr, n, max, incr, size+incr);
+        }
 };
 
-//Finding Maximum in array using k-way method
-int maximum::max_k_way(int *arr, int n, int max, int incr, int size)
+//Maximum in an array using 2 way method
+class max_two_way : public maximum
 {
-    compare comp;
-
-    if (size<n)
-    {
-        if (size+incr<n)
+    public:
+        int max_2_way(int *arr, int n, int ctr, int incr, int size)
         {
-            sort(arr, arr+incr);
-            max=comp.greaterthan(arr[incr-1], max);
+            return max_k_way(arr, n, ctr, incr, size);
         }
-        else
+};
+
+//Maximum in an array using 3 way method
+class max_three_way : public maximum
+{
+    public:
+        int max_3_way(int *arr, int n, int ctr, int incr, int size)
         {
-            sort(arr, arr+(n-size));
-            max=comp.greaterthan(arr[n-size-1], max);
+            return max_k_way(arr, n, ctr, incr, size);
         }
-    }
-
-    if (size>=n)
-    {
-        return max;
-    }
-
-    return max_k_way(arr+incr, n, max, incr, size+incr);
-}
+};
 
 //Driver function
 int main(int argc, char const *argv[])
 {
-    int n, k;
+    int n, k, max;
+    cout<<"Enter value of n: ";
     cin>>n;
     int arr[n];
+    cout<<"Enter array values: ";
     for (int i = 0; i < n; i++)
     {
         cin>>arr[i];
     }
-    cin>>k;
 
-    maximum max_array;
-    int incr = n/k;
-    int max = max_array.max_k_way(arr, n, 0, incr, 0);
-    cout<<max;
+    max_two_way obj1;
+    max=obj1.max_2_way(arr, n, 0, n/2, 0);
+    cout<<"Max using 2 way: "<<max<<"\n";
+
+    max_three_way obj2;
+    max=obj2.max_3_way(arr, n, 0, n/3, 0);
+    cout<<"Max using 3 way: "<<max<<"\n";
+
+    cout<<"Enter value of k: ";
+    cin>>k;
+    maximum obj3;
+    max = obj3.max_k_way(arr, n, 0, n/k, 0);
+    cout<<"Max using "<<k<<" way: "<<max<<"\n";
     return 0;
 }

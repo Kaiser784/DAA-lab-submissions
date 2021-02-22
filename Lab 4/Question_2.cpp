@@ -39,24 +39,22 @@ class count_negative
 };
 
 //Counting negative numbers in array using 2 way method
-class count_two_way
+class count_two_way : public count_negative
 {
     public:
         int count_2_way(int *arr, int n, int ctr, int incr, int size)
         {
-            count_negative obj;
-            return obj.count_k_way(arr, n, ctr, incr, size);
+            return count_k_way(arr, n, ctr, incr, size);
         }
 };
 
 //Counting negative numbers in array using 3 way method
-class count_three_way
+class count_three_way : public count_negative
 {
     public:
         int count_3_way(int *arr, int n, int ctr, int incr, int size)
         {
-            count_negative obj;
-            return obj.count_k_way(arr, n, ctr, incr, size);
+            return count_k_way(arr, n, ctr, incr, size);
         }
 };
 
