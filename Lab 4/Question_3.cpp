@@ -4,13 +4,15 @@
 #include<unordered_map>
 using namespace std;
 
-class print
+class others
 {
     public:
         void prints(int flag, int key);
+        void insertion_sort(vector<int> &array, int size);
+        void print_array(vector<int> &array, int size);
 };
 
-void print::prints(int flag, int key)
+void others::prints(int flag, int key)
 {
     if(flag == -1)
     {
@@ -23,7 +25,33 @@ void print::prints(int flag, int key)
 
 }
 
-class binary : public print
+void others::insertion_sort(vector<int> &array, int size)
+{
+    int i, temp, j;  
+    for (i = 1; i < size; i++) 
+    {  
+        temp = array[i];  
+        j = i - 1;  
+  
+        while (j >= 0 && array[j] > temp) 
+        {  
+            array[j + 1] = array[j];  
+            j = j - 1;  
+        }  
+        array[j + 1] = temp;  
+    }  
+}
+
+void others::print_array(vector<int> &array, int size)
+{
+    int i;  
+    for (i = 0; i < size; i++)
+    {  
+        cout << array[i] << " ";  
+    }
+    cout << endl; 
+}
+class binary : public others
 {
     public:
         int recursive(vector<int> &array, int start, int end, int key);
@@ -74,7 +102,7 @@ int binary::iterative(vector<int> &array, int start, int end, int key)
     return -1;
 }
 
-class ternary : public print
+class ternary : public others
 {
     public:
         int recursive(vector<int> &array, int start, int end, int key);
@@ -170,6 +198,9 @@ int main()
     binary bin;
     ternary tern;
 
+    bin.insertion_sort(array, size);
+    cout << "The sorted array is : ";
+    bin.print_array(array, size);
     cout << "Recursion Binary Search =>";
     flag  = bin.recursive(array, 0, size-1, key);
     bin.prints(flag, key);
