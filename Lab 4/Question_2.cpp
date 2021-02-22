@@ -2,7 +2,7 @@
 #include<algorithm>
 using namespace std;
 
-//Counting negative numbers in an array
+//Counting negative numbers in an array (Base class)
 class count_negative
 {
     public:
@@ -38,7 +38,7 @@ class count_negative
         }
 };
 
-//Counting negative numbers in array using 2 way method
+//Counting negative numbers in array using 2 way method (Sub class)
 class count_two_way : public count_negative
 {
     public:
@@ -48,7 +48,7 @@ class count_two_way : public count_negative
         }
 };
 
-//Counting negative numbers in array using 3 way method
+//Counting negative numbers in array using 3 way method (Sub class)
 class count_three_way : public count_negative
 {
     public:

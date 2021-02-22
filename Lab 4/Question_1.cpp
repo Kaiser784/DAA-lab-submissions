@@ -2,7 +2,7 @@
 #include<algorithm>
 using namespace std;
 
-//To find the max in an array
+//To find the max in an array (Base class)
 class maximum
 {
     public:
@@ -13,13 +13,13 @@ class maximum
             {
                 if (size+incr<n)
                 {
-                    sort(arr, arr+incr);
-                    max=arr[incr-1]>max?arr[incr-1]:max;
+                    int *it=max_element(arr, arr+incr);
+                    max=(*it)>max?(*it):max;
                 }
                 else
                 {
-                    sort(arr, arr+(n-size));
-                    max=arr[n-size-1]>max?arr[n-size-1]:max;
+                    int *it=max_element(arr, arr+(n-size));
+                    max=(*it)>max?(*it):max;
                 }
             }
 
@@ -32,7 +32,7 @@ class maximum
         }
 };
 
-//Maximum in an array using 2 way method
+//Maximum in an array using 2 way method (Sub class)
 class max_two_way : public maximum
 {
     public:
@@ -42,7 +42,7 @@ class max_two_way : public maximum
         }
 };
 
-//Maximum in an array using 3 way method
+//Maximum in an array using 3 way method (Sub Class)
 class max_three_way : public maximum
 {
     public:
