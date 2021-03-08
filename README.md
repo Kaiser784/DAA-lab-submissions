@@ -82,7 +82,8 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
 ## Lab 3
 ```
 1. Given a ternary array (filled with 0,1,2) of size 'n'.  
-   Arrange them in non-decreasing order preserving stability (for elements with multiplicity, their order of appearance must be preserved in the output array).
+   Arrange them in non-decreasing order preserving stability 
+   (for elements with multiplicity, their order of appearance must be preserved in the output array).
 
 ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the input array must appear before the second '2'.   
 
@@ -118,7 +119,8 @@ ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the in
 
 2. The above problem for 3-way merge sort.
 
-3. Implement Quicksort with 2 pivots; maintain 'small window', 'large window', middle window.   Suppose the pivots are x and y such that x < y, then
+3. Implement Quicksort with 2 pivots; maintain 'small window', 'large window', middle window.
+   Suppose the pivots are x and y such that x < y, then
 
      small window (values less than x)
      large window (values greater than y)
