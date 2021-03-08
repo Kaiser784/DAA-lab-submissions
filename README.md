@@ -97,6 +97,8 @@ ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the in
 ```
 ---
 ## Lab 4
+
+#### Use the Inheritance feature of OO paradigm to implement the following.
 #### Divide and Conquer Paradigm
 ```
 1. Find MAX using 1-way, 2-way, 3-way, k-way approach
@@ -104,4 +106,29 @@ ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the in
 2. Count the number of negative numbers in an integer array using 2-way and 3-way approach.
 
 3. Implement an Iterative and a Recursive algorithm for binary search, ternary search.
+```
+---
+## Lab 5
+#### Use the Inheritance feature of OO paradigm to implement the following.
+```
+1. Consider a large integer array of size at least 1000. Populate the array using rand() function. 
+   Use 2-way merge sort as part of divide phase and stop the recursion when the input size is less than or equal to 20. 
+   For all subproblems of size at most 20, sort the subproblem using insertion sort, selection, bubble; 
+   compare the system times and display which Hybrid sorting is better (Merge+insertion, Merge+selection, Merge+bubble)
+
+2. The above problem for 3-way merge sort.
+
+3. Implement Quicksort with 2 pivots; maintain 'small window', 'large window', middle window.   Suppose the pivots are x and y such that x < y, then
+
+     small window (values less than x)
+     large window (values greater than y)
+     middle window (between x and y)
+
+4.  Implement Insertion sort using binary search; note that at iteration i, we chk the position for A[i] in A[1...(i-1)] which is sorted.
+    The classical algorithm available in texts does linear search. Perform binary search on A[1...(i-1)] to identify the right position for A[i]. 
+    What is the complexity of this algorithm. Is it better than classical insertion sort.
+
+5. Implement 3 different logic to merge two sorted arrays.
+
+6. Given a max-heap, the objective is to find a minimum and second minimum. Implement an efficient logic.
 ```
