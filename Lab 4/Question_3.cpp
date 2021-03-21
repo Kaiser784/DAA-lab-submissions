@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<cmath>
-#include<unordered_map>
+
 using namespace std;
 
 class others
@@ -24,7 +24,7 @@ void others::prints(int flag, int key)
     }
 
 }
-
+    
 void others::insertion_sort(vector<int> &array, int size)
 {
     int i, temp, j;  
@@ -68,7 +68,7 @@ int binary::recursive(vector<int> &array, int start, int end, int key)
         {
             return mid;
         }
-        if(array[mid] > key)
+        else if(array[mid] > key)
         {
             return binary::recursive(array, start, mid-start, key);
         }
@@ -90,7 +90,7 @@ int binary::iterative(vector<int> &array, int start, int end, int key)
         {
             return mid;
         }
-        if(array[mid] > key)
+        else if(array[mid] > key)
         {
             end = mid - 1;
         }
@@ -145,8 +145,8 @@ int ternary::iterative(vector<int> &array, int start, int end, int key)
 {
     while(end >= start)
     {
-        int mid1 = start + (end-start)/3;
-        int mid2 = end - (end-start)/3;
+        int mid1 = start + ((end-start)/3);
+        int mid2 = end - ((end-start)/3);
 
         if(array[mid1] == key)
         {
@@ -161,7 +161,7 @@ int ternary::iterative(vector<int> &array, int start, int end, int key)
         {
             end = mid1-1;
         }
-        if(array[mid2] < key)
+        else if(array[mid2] < key)
         {
             start = mid2+1;
         }
@@ -201,6 +201,7 @@ int main()
     bin.insertion_sort(array, size);
     cout << "The sorted array is : ";
     bin.print_array(array, size);
+    cout << endl;
     cout << "Recursion Binary Search =>";
     flag  = bin.recursive(array, 0, size-1, key);
     bin.prints(flag, key);
