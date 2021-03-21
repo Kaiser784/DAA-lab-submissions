@@ -85,7 +85,7 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
    Arrange them in non-decreasing order preserving stability 
    (for elements with multiplicity, their order of appearance must be preserved in the output array).
 
-ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the input array must appear before the second '2'.   
+   ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the input array must appear before the second '2'.   
 
    Present three diff logic.   Can this be done in theta(n) time.
 
@@ -126,9 +126,9 @@ ex: 2 0 1 1 0 0 2  --in the final array, 0 0 0 1 1 2 2 ; the first '2' of the in
      large window (values greater than y)
      middle window (between x and y)
 
-4.  Implement Insertion sort using binary search; note that at iteration i, we chk the position for A[i] in A[1...(i-1)] which is sorted.
-    The classical algorithm available in texts does linear search. Perform binary search on A[1...(i-1)] to identify the right position for A[i]. 
-    What is the complexity of this algorithm. Is it better than classical insertion sort.
+4. Implement Insertion sort using binary search; note that at iteration i, we chk the position for A[i] in A[1...(i-1)] which is sorted.
+   The classical algorithm available in texts does linear search. Perform binary search on A[1...(i-1)] to identify the right position for A[i]. 
+   What is the complexity of this algorithm. Is it better than classical insertion sort.
 
 5. Implement 3 different logic to merge two sorted arrays.
 
