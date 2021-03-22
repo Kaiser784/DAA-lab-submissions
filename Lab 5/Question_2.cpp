@@ -4,12 +4,19 @@ using namespace std;
 //Parent class
 class Sorting {
     public:
+        void swap(int *num1, int *num2)
+        {
+            int temp = *num1;
+            *num1 = *num2;
+            *num2 = temp;
+        }
         void bubbleSort(int *arr, int l, int r);
         void selectionSort(int *arr, int l, int r);
         void insertionSort(int* arr, int l, int r);
         void display(int *arr, int size);
 };
 
+//Function for Bubble Sort
 void Sorting::bubbleSort(int *arr, int l, int r)
 {
     int temp;
@@ -20,14 +27,13 @@ void Sorting::bubbleSort(int *arr, int l, int r)
 		{
 			if(arr[j] > arr[j+1])
 			{
-				temp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = temp;			
+                swap(&arr[j], &arr[j+1]);	
 			}
 		}
 	}
 }
 
+//Function for Selection Sort
 void Sorting::selectionSort(int *arr, int l, int r)
 {
     int indexMin, temp;
@@ -53,6 +59,7 @@ void Sorting::selectionSort(int *arr, int l, int r)
     }
 }
 
+//Function for Insertion Sort
 void Sorting::insertionSort(int *arr, int l, int r)
 {
     int j, temp;
@@ -61,9 +68,7 @@ void Sorting::insertionSort(int *arr, int l, int r)
 		j = i;
 		while(j > l && arr[j]<arr[j-1])
 		{
-            temp = arr[j];
-			arr[j] = arr[j-1];
-            arr[j-1] = temp;
+            swap(&arr[j], &arr[j-1]);
 			j--;
 		}
 	}
@@ -79,6 +84,7 @@ void Sorting::display(int *arr, int size)
     cout<<"\n";
 }
 
+
 class MergeSort_3way:public Sorting {
     public:
         void merge(int *arr, int l, int m1, int m2, int r);
@@ -87,6 +93,7 @@ class MergeSort_3way:public Sorting {
         void insertionMerge_3way(int *arr, int l, int r);
 };
 
+//Funstion to merge 3 arrays
 void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 {
     int temp[r+1];
@@ -119,6 +126,7 @@ void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 		} 
 	} 
 
+    //Check remaining elements in the 1st and 2nd ranges
 	while ((i < m1) && (j < m2))
 	{ 
 		if(arr[i] < arr[j]) 
@@ -131,7 +139,7 @@ void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 		} 
 	} 
 
-
+    //Check whether 2nd and 3rd ranges have remaining elements
 	while ((j < m2) && (k < r))
 	{ 
 		if(arr[j] < arr[k])
@@ -144,6 +152,7 @@ void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 		} 
 	} 
 
+    //Check whether 1st and 3rd ranges have remaining elements
 	while ((i < m1) && (k < r)) 
 	{ 
 		if(arr[i] < arr[k]) 
@@ -156,20 +165,20 @@ void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 		} 
 	} 
 
+    //Check all the remaining values in all the ranges
 	while (i < m1)
     {
         temp[ind++] = arr[i++]; 
     }
-
 	while (j < m2)
     {
         temp[ind++] = arr[j++]; 
     }
-
 	while (k < r) 
 		temp[ind++] = arr[k++]; 
 
-	for(int i = l; i <= r; i++)
+
+	for(int i = l; i < r; i++)
 	{
 		arr[i] = temp[i];
 	}
@@ -242,43 +251,48 @@ int main()
     int n;
     cout<<"Enter the number of elements\n";
     cin>>n;
-    int arr[1000];
+    int unsorted_arr[1000], arr[n];
     MergeSort_3way obj;
-
+    
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        unsorted_arr[i] = RandomRange(1,100);
     }
-    obj.display(arr, n);
+    obj.display(unsorted_arr, n);
+    cout<<"\n\n";
 
+    
+    ///MergeSort + BubbleSort
+    for (int i = 0; i < n; i++)
+    {
+        arr[i]=unsorted_arr[i];
+    }
     cout<<"1. Merge and Bubble Sort\n";
     obj.bubbleMerge_3way(arr, 0, n-1);
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\n\n";
 
 
+    //MergeSort + SelectionSort
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        arr[i]=unsorted_arr[i];
     }
-    obj.display(arr, n);
-
     cout<<"2. Merge and Selection Sort\n";
     obj.selectionMerge_3way(arr, 0, n-1);
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\n\n";
     
 
+    //MergeSort + InsertionSort
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        arr[i]=unsorted_arr[i];
     }
-    obj.display(arr, n);
-
     cout<<"3. Merge and Insertion Sort\n";
     obj.insertionMerge_3way(arr, 0, n-1);
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\n\n";
 
     return 0;
 }

@@ -17,6 +17,7 @@ class Sorting {
         void display(int *arr, int size);
 };
 
+//Function for Bubble Sort
 void Sorting::bubbleSort(int *arr, int l, int r)
 {
     int temp;
@@ -33,6 +34,7 @@ void Sorting::bubbleSort(int *arr, int l, int r)
 	}
 }
 
+//Function for Selection Sort
 void Sorting::selectionSort(int *arr, int l, int r)
 {
     int indexMin, temp;
@@ -58,6 +60,7 @@ void Sorting::selectionSort(int *arr, int l, int r)
     }
 }
 
+//Function for Insertion Sort
 void Sorting::insertionSort(int *arr, int l, int r)
 {
     int j, temp;
