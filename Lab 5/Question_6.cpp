@@ -31,13 +31,11 @@ void heaps::min_in_heap()
 
     for(int i = heap.size()-1; i >= 0; i--)
     {   
-        int temphyt = height(i + 1);
-
-        if(temphyt == hyt)
+        if(height(i + 1) == hyt)
         {
             temp.push_back(heap[i]);
         }
-        else if(temphyt == hyt - 1 && heap.size() <= ((2*i) + 1))
+        else if(height(i + 1) == hyt - 1 && heap.size() <= ((2*i) + 1))
         {
             temp.push_back(heap[i]);
         }
