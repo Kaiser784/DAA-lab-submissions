@@ -1,15 +1,16 @@
-/*
-Consider a large integer array of size at least 1000. Populate the array using rand() function. 
-Use 2-way merge sort as part of divide phase and stop the recursion when the input size is less than or equal to 20. 
-For all subproblems of size at most 20, sort the subproblem using insertion sort, selection, bubble; 
-compare the system times and display which Hybrid sorting is better (Merge+insertion, Merge+selection, Merge+bubble)
-*/
 #include <bits/stdc++.h>
 using namespace std;
+using namespace std::chrono;
 
 //Parent class
 class Sorting {
     public:
+        void swap(int *num1, int *num2)
+        {
+            int temp = *num1;
+            *num1 = *num2;
+            *num2 = temp;
+        }
         void bubbleSort(int *arr, int l, int r);
         void selectionSort(int *arr, int l, int r);
         void insertionSort(int* arr, int l, int r);
@@ -26,9 +27,7 @@ void Sorting::bubbleSort(int *arr, int l, int r)
 		{
 			if(arr[j] > arr[j+1])
 			{
-				temp = arr[j];
-				arr[j] = arr[j+1];
-				arr[j+1] = temp;			
+                swap(&arr[j], &arr[j+1]);	
 			}
 		}
 	}
@@ -67,9 +66,7 @@ void Sorting::insertionSort(int *arr, int l, int r)
 		j = i;
 		while(j > l && arr[j]<arr[j-1])
 		{
-            temp = arr[j];
-			arr[j] = arr[j-1];
-            arr[j-1] = temp;
+            swap(&arr[j], &arr[j-1]);
 			j--;
 		}
 	}
@@ -98,32 +95,57 @@ class MergeSort:public Sorting {
 //Function to merge sorted arrays
 void MergeSort::merge(int *arr, int l, int m, int r)
 {
-    int i = l, j=m+1, k = l;
-	int temp[r+1];
+    int n1 = m - l + 1;
+    int n2 = r - m;
+ 
+    // Temp arrays
+    int L[n1], R[n2];
 
-	while(i <= m && j <= r)
-	{
-		if(arr[i] < arr[j])
-		{
-			temp[k++] = arr[i++];
-		}
-		else
-		{
-			temp[k++] = arr[j++];
-		}
-	}
-	while(i <= m)
-	{
-		temp[k++] = arr[i++];
-	}
-	while(j <= l)
-	{
-		temp[k++] = arr[j++];
-	}
-	for(int i = l; i <= r; i++)
-	{
-		arr[i] = temp[i];
-	}
+    for (int i = 0; i < n1; i++)
+    {
+        L[i] = arr[l + i];
+    }
+    for (int j = 0; j < n2; j++)
+    {
+        R[j] = arr[m + 1 + j];
+    }
+ 
+    //Initial index of the temp arrays
+    int i = 0;
+    int j = 0;
+ 
+    // Initial index of merged subarray
+    int k = l;
+
+    //Merge the arrays using 2 pointers
+    while (i < n1 && j < n2)
+    {
+        if (L[i] <= R[j])
+        {
+            arr[k] = L[i];
+            i++;
+        }
+        else
+        {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    //Check all the remaining values in the temp arrays
+    while (i < n1)
+    {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+    while (j < n2)
+    {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
 }
 
 void MergeSort::mergesort_bubbleSort(int *arr, int l, int r)
@@ -135,11 +157,9 @@ void MergeSort::mergesort_bubbleSort(int *arr, int l, int r)
         bubbleSort(arr, l, r);
         return;
     }
-    else if(l < r)
-    {
-        mergesort_bubbleSort(arr,l,m);
-        mergesort_bubbleSort(arr,m+1,r);
-    }
+    mergesort_bubbleSort(arr,l,m);
+    mergesort_bubbleSort(arr,m+1,r);
+
     merge(arr,l,m,r);
 }
 
@@ -152,11 +172,9 @@ void MergeSort::mergesort_selectionSort(int *arr, int l, int r)
         selectionSort(arr, l, r);
         return;
     }
-    else if(l < r)
-    {
-        mergesort_selectionSort(arr,l,m);
-        mergesort_selectionSort(arr,m+1,r);
-    }
+    mergesort_selectionSort(arr,l,m);
+    mergesort_selectionSort(arr,m+1,r);
+    
     merge(arr,l,m,r);
 }
 
@@ -169,11 +187,9 @@ void MergeSort::mergesort_insertionSort(int *arr, int l, int r)
         insertionSort(arr, l, r);
         return;
     }
-    else if(l < r)
-    {
-        mergesort_insertionSort(arr,l,m);
-        mergesort_insertionSort(arr,m+1,r);
-    }
+    mergesort_insertionSort(arr,l,m);
+    mergesort_insertionSort(arr,m+1,r);
+    
     merge(arr,l,m,r);
 }
 
@@ -188,46 +204,69 @@ int RandomRange(int lower, int upper)
 //Main function
 int main()
 {
-    int n;
+    int n, time;
     cout<<"Enter the number of elements: ";
     cin>>n;
-    int arr[1000];
+    int unsorted_arr[1000], arr[n];
     MergeSort obj;
 
+    cout<<"\nThe Unsorted array is:\n";
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        unsorted_arr[i] = RandomRange(1,100);
     }
-    obj.display(arr, n);
+    obj.display(unsorted_arr, n);
+    cout<<"\n\n";
 
+
+    //MergeSort + BubbleSort
+    for (int i = 0; i < n; i++)
+    {
+        arr[i]=unsorted_arr[i];
+    }
     cout<<"1. Merge and Bubble Sort\n";
+    auto start = high_resolution_clock::now();
     obj.mergesort_bubbleSort(arr, 0, n-1);
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    time = duration.count();
+    
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\nTime Duration: "<<time<<"\n\n"<<endl;
 
 
+
+    //MergeSort + SelectionSort
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        arr[i]=unsorted_arr[i];
     }
-    obj.display(arr, n);
-
     cout<<"2. Merge and Selection Sort\n";
+    start = high_resolution_clock::now();
     obj.mergesort_selectionSort(arr, 0, n-1);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    time = duration.count();
+    
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\nTime Duration: "<<time<<"\n\n"<<endl;
     
 
+    //MergeSort + InsertionSort
     for (int i = 0; i < n; i++)
     {
-        arr[i] = RandomRange(1,100);
+        arr[i]=unsorted_arr[i];
     }
-    obj.display(arr, n);
-
     cout<<"3. Merge and Insertion Sort\n";
+    start = high_resolution_clock::now();
     obj.mergesort_insertionSort(arr, 0, n-1);
+    stop = high_resolution_clock::now();
+    duration = duration_cast<microseconds>(stop - start);
+    time = duration.count();
+    
     obj.display(arr, n);
-    cout<<"\n";
+    cout<<"\nTime Duration: "<<time<<"\n\n"<<endl;
+
 
     return 0;
 }

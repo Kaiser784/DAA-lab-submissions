@@ -37,7 +37,8 @@ void Parent::swap (int *a, int *b)
 void QuickSort::DualPivotQuickSort (int *arr, int low, int high) 
 {
     if (low < high)
-    {				// lp means left pivot, and rp means right pivot.
+    {	
+        // lp means left pivot, and rp means right pivot.
         int lp, rp;  
         rp = partition (arr, low, high, &lp);
         
