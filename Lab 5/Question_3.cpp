@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-
 class Parent{
     public:
         void swap (int *a, int *b);

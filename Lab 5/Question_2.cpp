@@ -102,7 +102,7 @@ void MergeSort_3way::merge(int *arr, int l, int m1, int m2, int r)
 
 	while ((i < m1) && (j < m2) && (k < r)) 
 	{ 
-		if(arr[i] < arr[j]) 
+		if(arr[i] < arr[j])
 		{ 
 			if(arr[i] < arr[k]) 
 			{ 
@@ -193,11 +193,11 @@ void MergeSort_3way::bubbleMerge_3way(int *arr, int l, int r)
     }
 
     int m1 = l + (r-l)/3;
-    int m2 = l + 2*((r-l)/3);
+    int m2 = l + 2*((r-l)/3) + 1;
 
     bubbleMerge_3way(arr, l, m1);
-    bubbleMerge_3way(arr, m1+1, m2);
-    bubbleMerge_3way(arr, m2+1, r);
+    bubbleMerge_3way(arr, m1, m2);
+    bubbleMerge_3way(arr, m2, r);
 
     merge(arr, l, m1, m2, r);
 }
@@ -211,11 +211,11 @@ void MergeSort_3way::selectionMerge_3way(int *arr, int l, int r)
     }
 
     int m1 = l + (r-l)/3;
-    int m2 = l + 2*((r-l)/3);
+    int m2 = l + 2*((r-l)/3) + 1;
 
     selectionMerge_3way(arr, l, m1);
-    selectionMerge_3way(arr, m1+1, m2);
-    selectionMerge_3way(arr, m2+1, r);
+    selectionMerge_3way(arr, m1, m2);
+    selectionMerge_3way(arr, m2, r);
 
     merge(arr, l, m1, m2, r);
 }
@@ -229,11 +229,11 @@ void MergeSort_3way::insertionMerge_3way(int *arr, int l, int r)
     }
 
     int m1 = l + (r-l)/3;
-    int m2 = l + 2*((r-l)/3);
+    int m2 = l + 2*((r-l)/3) + 1;
 
     insertionMerge_3way(arr, l, m1);
-    insertionMerge_3way(arr, m1+1, m2);
-    insertionMerge_3way(arr, m2+1, r);
+    insertionMerge_3way(arr, m1, m2);
+    insertionMerge_3way(arr, m2, r);
 
     merge(arr, l, m1, m2, r);
 }
