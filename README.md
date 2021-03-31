@@ -134,3 +134,30 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
 
 6. Given a max-heap, the objective is to find a minimum and second minimum. Implement an efficient logic.
 ```
+## Midsem
+#### `Coding Best Practice`
+   1. Proper indentation,  name of the function must be self explanatory (ex; find_min, find_max, avoid f1, f2).   
+   2. Except loop indices (i,j,k), all other variables must be self explanatory (ex: Min, SecondMin, avoid, variables, a,b,temp, m1,m2,temp2).  
+   3. All functions must be public and defined in the class template.
+
+```
+1. Given an integer array A, and an integer K.  The objective is to check whether A has w,x,y,z such that K=w+x+y+z, print w,x,y,z if exists. 
+   Present a logic and C++ implementation.  
+   (15 marks)
+
+    For Q1; Only 5 marks will be awarded if theta(n^4) or theta(n^3) logic is presented. Think of an efficient approach to receive full credits.
+
+2. Given an integer array A.  The objective is to find (i) minimum (ii) maximum (iii) second minimum in A as efficiently as possible. 
+   Focus on 'step count', the number of comparisons. 
+   If you have, say, two logic (L1,L2) wherein L1 takes n-1 comparisons and L2 takes n-2 comparisons, then L2 is efficient. 
+   Do not focus on asymptotic analysis. In asymptotic sense, both are of the same complexity.
+   (25 marks)
+   
+   For Q2; do not perform simple linear scan, sorting - less efficient. some partial marks (5 marks) will be given if this is presented.
+
+Extra Credit (10 marks)
+
+   Identify a problem P and an algorithm A to solve P such that A runs in
+   θ(( log n) ^2)[ the square of logn]. Write a C++ program that implements A. 
+   Test drive your program with a suitable test cases. Also, show that A indeed runs in θ((log n)^2).
+```
