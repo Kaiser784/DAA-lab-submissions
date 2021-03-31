@@ -9,6 +9,7 @@ class data
 {   
     public:
     void print(array<int, 100>& arr, int size);
+    int bin_search(array<int, 100>& arr, int key, int start, int end);
 };
 
 void data::print(array<int, 100>& arr, int size)
@@ -23,10 +24,9 @@ class sorting : public data
 {
     public:
         void insertion_sort(array<int, 100>& arr, int size);
-        int bin_search(array<int, 100>& arr, int key, int start, int end);
 };
 
-int sorting::bin_search(array<int, 100>& arr, int key, int start, int end)
+int data::bin_search(array<int, 100>& arr, int key, int start, int end)
 {
     if(end <= start)
     {
