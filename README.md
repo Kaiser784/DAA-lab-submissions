@@ -134,6 +134,7 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
 
 6. Given a max-heap, the objective is to find a minimum and second minimum. Implement an efficient logic.
 ```
+---
 ## Midsem
 #### `Coding Best Practice`
    1. Proper indentation,  name of the function must be self explanatory (ex; find_min, find_max, avoid f1, f2).   
@@ -161,3 +162,12 @@ Extra Credit (10 marks)
    θ(( log n) ^2)[ the square of logn]. Write a C++ program that implements A. 
    Test drive your program with a suitable test cases. Also, show that A indeed runs in θ((log n)^2).
 ```
+---
+## Lab 6
+#### `Implement Greedy Algorithm`
+```
+1. Coin change
+2. Fractional Knapsack 
+3. Scheduling
+```
+Look at case studies given in geeksforgeek - implement any 5 with varying complexities.
