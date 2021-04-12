@@ -34,9 +34,9 @@ void data::find()
 
 int main()
 {
-    data mid_rev;
+    data survive;
     
-    mid_rev.find();
+    survive.find();
 
     return 0;
 }
