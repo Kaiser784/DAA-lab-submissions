@@ -99,8 +99,8 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
 ---
 ## Lab 4
 
-#### Use the Inheritance feature of OO paradigm to implement the following.
-#### Divide and Conquer Paradigm
+#### `Inheritance feature of OO paradigm`
+#### `Divide and Conquer Paradigm`
 ```
 1. Find MAX using 1-way, 2-way, 3-way, k-way approach
 
@@ -110,7 +110,7 @@ Object Oriented Algorithm Design and Analysis Practice Lab course @IIITDM Kanche
 ```
 ---
 ## Lab 5
-#### Use the Inheritance feature of OO paradigm to implement the following.
+#### `Inheritance feature of OO paradigm`
 ```
 1. Consider a large integer array of size at least 1000. Populate the array using rand() function. 
    Use 2-way merge sort as part of divide phase and stop the recursion when the input size is less than or equal to 20. 
@@ -171,3 +171,30 @@ Extra Credit (10 marks)
 3. Scheduling
 ```
 Look at case studies given in geeksforgeek - implement any 5 with varying complexities.
+
+## Endsem
+#### `Coding Best Practice`
+   1. Proper indentation,  name of the function must be self explanatory (ex; find_min, find_max, avoid f1, f2).   
+   2. Except loop indices (i,j,k), all other variables must be self explanatory (ex: Min, SecondMin, avoid, variables, a,b,temp, m1,m2,temp2).  
+   3. All functions must be public and defined in the class template.
+
+```
+1. Truck Loading Problem
+   
+   Input: A truck with capacity C kgs, 'K' containers with weights w_i (w_1 refers to the weight of the first container).
+   Objective: To load the truck with maximum number of containers, not exceeding C 
+   
+   Present a Greedy and DP for Q1.   (10 + 10 = 20 marks)
+   Marking scheme: 3: logic 7: code for each
+   
+2. Truck Loading Problem - A Variant
+   
+   Input:  Two trucks with capacity C kgs each,  'K' containers with weights w_i (w_1 refers to the weight of the first container).
+   Objective: To load the two trucks with maximum number of containers, not exceeding C for each   
+   
+   Present a Greedy algorithm if exists. If Greedy algorithm does not exist, then present two greedy strategies along with counter 
+   examples. Implement the greedy algorithm if exists. If greedy algorithm does not exist, then NO need to implementation greedy 
+   strategies discovered. It is enough to present counter examples. (5 + 5 = 10 marks)
+
+   Present a DP solution if exists. Implement the same. (10 + 10 = 20 marks ; 10 logic, recursive solution, 10: code)
+```
