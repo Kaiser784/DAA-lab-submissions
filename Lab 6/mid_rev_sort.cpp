@@ -8,7 +8,7 @@ using namespace std;
 class data
 {
     public:
-        vector<int> array{1, 6, 3, 4, 5, 7, 2};//non-working array => 1, 6, 3, 4, 5, 7, 2
+        vector<int> array{1, 6, 3, 4, 5, 2, 7};//non-working array => 1, 6, 3, 4, 5, 7, 2
         int find();                            //working array => {1, 6, 3, 4, 5, 2, 7}
 };
 

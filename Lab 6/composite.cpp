@@ -8,7 +8,7 @@ using namespace std;
 class data
 {
     public:
-        int number = 90;
+        int number = 91;
         map<int, int> total;
         int find(); 
         void print();                           
